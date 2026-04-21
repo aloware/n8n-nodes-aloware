@@ -2,6 +2,8 @@ import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from '
 import { contactDescription } from './resources/contact';
 import { smsDescription } from './resources/sms';
 import { userDescription } from './resources/user';
+import { sequenceDescription } from './resources/sequence';
+import { powerDialerDescription } from './resources/powerDialer';
 
 export class Aloware implements INodeType {
 	description: INodeTypeDescription = {
@@ -39,6 +41,8 @@ export class Aloware implements INodeType {
 				noDataExpression: true,
 				options: [
 					{ name: 'Contact', value: 'contact' },
+					{ name: 'Power Dialer', value: 'powerDialer' },
+					{ name: 'Sequence', value: 'sequence' },
 					{ name: 'SMS', value: 'sms' },
 					{ name: 'User', value: 'user' },
 				],
@@ -47,6 +51,8 @@ export class Aloware implements INodeType {
 			...contactDescription,
 			...smsDescription,
 			...userDescription,
+			...sequenceDescription,
+			...powerDialerDescription,
 		],
 	};
 }
