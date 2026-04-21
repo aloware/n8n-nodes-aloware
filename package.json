@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-aloware",
 	"version": "0.1.0",
-	"description": "n8n community node for Aloware — send SMS, manage contacts, calls, sequences and power dialer via the Aloware API.",
+	"description": "n8n community node for Aloware — send SMS/MMS, manage contacts, enroll into sequences and manage power dialer lists via the Aloware API.",
 	"license": "MIT",
 	"homepage": "https://github.com/Maxximilyan/n8n-nodes-aloware",
 	"keywords": [
