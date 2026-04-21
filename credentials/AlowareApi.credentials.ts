@@ -1,5 +1,6 @@
 import type {
 	IAuthenticateGeneric,
+	Icon,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
@@ -9,6 +10,8 @@ export class AlowareApi implements ICredentialType {
 	name = 'alowareApi';
 
 	displayName = 'Aloware API';
+
+	icon: Icon = { light: 'file:aloware.svg', dark: 'file:aloware.dark.svg' };
 
 	documentationUrl =
 		'https://support.aloware.com/en/articles/9020040-api-documentation-aloware-sms-api-integration';

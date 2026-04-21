@@ -11,9 +11,9 @@ export const powerDialerDescription: INodeProperties[] = [
 		displayOptions: { show: showOnlyForPowerDialer },
 		options: [
 			{
-				name: 'Remove Contact from Lists',
+				name: 'Remove Contact From Lists',
 				value: 'removeContactFromLists',
-				action: 'Remove a contact from all Power Dialer lists',
+				action: 'Remove a contact from all power dialer lists',
 				description: 'Remove the given contact from every Power Dialer list',
 				routing: {
 					request: {
@@ -25,7 +25,7 @@ export const powerDialerDescription: INodeProperties[] = [
 			{
 				name: 'Clear List',
 				value: 'clearList',
-				action: 'Clear all contacts from a Power Dialer list',
+				action: 'Clear all contacts from a power dialer list',
 				description: 'Remove every contact from the specified Power Dialer list',
 				routing: {
 					request: {
@@ -37,7 +37,7 @@ export const powerDialerDescription: INodeProperties[] = [
 			{
 				name: 'Clear User Lists',
 				value: 'clearUserLists',
-				action: "Clear all contacts from a user's Power Dialer lists",
+				action: 'Clear all contacts from a user s power dialer lists',
 				description: "Remove every contact from all Power Dialer lists owned by the given user",
 				routing: {
 					request: {

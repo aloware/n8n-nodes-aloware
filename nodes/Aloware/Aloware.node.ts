@@ -9,7 +9,7 @@ export class Aloware implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Aloware',
 		name: 'aloware',
-		icon: { light: 'file:aloware.svg', dark: 'file:aloware.svg' },
+		icon: { light: 'file:aloware.svg', dark: 'file:aloware.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
