@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.aloware",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Communication", "Sales"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://support.aloware.com/en/articles/9020040-api-documentation-aloware-sms-api-integration"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://support.aloware.com/en/articles/9020040-api-documentation-aloware-sms-api-integration"
+			}
+		]
+	}
+}
