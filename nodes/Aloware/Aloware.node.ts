@@ -12,8 +12,8 @@ export class Aloware implements INodeType {
 		icon: { light: 'file:aloware.svg', dark: 'file:aloware.dark.svg' },
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Call the Aloware API — send SMS, manage contacts, calls, users',
+		subtitle: '={{$parameter["resource"] + ": " + $parameter["operation"]}}',
+		description: 'Send SMS/MMS, manage contacts, enroll into sequences and manage power dialer lists via the Aloware API',
 		defaults: {
 			name: 'Aloware',
 		},
@@ -27,7 +27,7 @@ export class Aloware implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: '={{$credentials.environment}}',
+			baseURL: 'https://app.aloware.io',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',

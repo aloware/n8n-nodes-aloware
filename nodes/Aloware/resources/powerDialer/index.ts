@@ -37,7 +37,7 @@ export const powerDialerDescription: INodeProperties[] = [
 			{
 				name: 'Clear User Lists',
 				value: 'clearUserLists',
-				action: 'Clear all contacts from a user s power dialer lists',
+				action: 'Clear all power dialer lists owned by a user',
 				description: "Remove every contact from all Power Dialer lists owned by the given user",
 				routing: {
 					request: {

@@ -27,17 +27,6 @@ export class AlowareApi implements ICredentialType {
 			description:
 				'Your Aloware API token. Find it in Aloware UI → Integrations → API Tokens.',
 		},
-		{
-			displayName: 'Environment',
-			name: 'environment',
-			type: 'options',
-			options: [
-				{ name: 'Production (app.aloware.io)', value: 'https://app.aloware.io' },
-				{ name: 'Development (app.alodev.org)', value: 'https://app.alodev.org' },
-			],
-			default: 'https://app.aloware.io',
-			description: 'Which Aloware environment to call',
-		},
 	];
 
 	authenticate: IAuthenticateGeneric = {
@@ -54,7 +43,7 @@ export class AlowareApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials.environment}}',
+			baseURL: 'https://app.aloware.io',
 			url: '/api/v1/webhook/users',
 			method: 'GET',
 		},

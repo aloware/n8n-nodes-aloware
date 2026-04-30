@@ -110,6 +110,12 @@ export const sequenceDescription: INodeProperties[] = [
 		default: false,
 		description: 'Whether to enroll the contact even if already enrolled in another sequence',
 		displayOptions: { show: { resource: ['sequence'], operation: ['enroll'] } },
-		routing: { send: { type: 'body', property: 'force_enroll' } },
+		routing: {
+			send: {
+				type: 'body',
+				property: 'force_enroll',
+				value: '={{$value ? 1 : 0}}',
+			},
+		},
 	},
 ];

@@ -47,20 +47,28 @@ n8n-nodes-aloware
 
 You need an **API Token** from your Aloware account. Generate it from Aloware **UI → Integrations → API Tokens**.
 
-When creating the credential in n8n you can choose between:
-- **Production** — `https://app.aloware.io`
-- **Development** — `https://app.alodev.org`
+All requests are sent to the Aloware production API (`https://app.aloware.io`).
 
 The token is sent automatically with every request (as a query parameter for `GET` and in the body for `POST`, matching Aloware's webhook API convention).
 
 ## Compatibility
 
-- Requires n8n version `1.0` or later
+- Tested with n8n `1.108+` (self-hosted)
 - Tested against Node.js 22 LTS
 
 ## Resources
 
-- [Aloware API documentation](https://support.aloware.com/en/articles/9020040-api-documentation-aloware-sms-api-integration)
+Aloware API documentation (per resource used by this node):
+
+- [Lead API (Contacts — Lookup / Create or Update)](https://support.aloware.com/en/articles/9020058-aloware-lead-api-documentation)
+- [SMS API (Send SMS / MMS)](https://support.aloware.com/en/articles/9020040-api-documentation-aloware-sms-api-integration)
+- [Users API (List users / agents)](https://support.aloware.com/en/articles/9352647-api-documentation-users-api)
+- [Sequence API (Enroll / Disenroll contacts)](https://support.aloware.com/en/articles/9020073-aloware-sequence-api-enroll-and-disenroll-contacts-in-sequences)
+- [Power Dialer APIs (Manage lists)](https://support.aloware.com/en/articles/9167815-aloware-power-dialer-apis)
+- [Webhooks overview](https://support.aloware.com/en/collections/8591828-webhooks)
+
+n8n:
+
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 
 ## License
