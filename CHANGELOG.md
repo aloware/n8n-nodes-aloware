@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1] - 2026-08-12
+
+### Fixed
+- `peerDependencies.n8n-workflow` is now `*`, as required by the official
+  `@n8n/scan-community-package` check for community nodes.
+- `publishConfig.access` is set to `public` so npm can attach a provenance
+  attestation when publishing.
+
 ## [0.1.0] - 2026-04-30
 
 ### Added
