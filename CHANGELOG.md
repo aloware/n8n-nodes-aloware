@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.2] - 2026-08-12
+
+### Added
+- **Example use cases** section in the README, covering lead follow-up, sequence
+  enrollment, appointment reminders, Power Dialer cleanup and AI-agent usage.
+
+### Changed
+- Releases are now published through npm OIDC trusted publishing instead of a
+  long-lived access token.
+- Compatibility notes updated for n8n 2.23.
+
 ## [0.1.1] - 2026-08-12
 
 ### Fixed

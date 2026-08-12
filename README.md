@@ -6,6 +6,7 @@ It lets you call the Aloware API from n8n workflows to manage contacts, send SMS
 
 [Installation](#installation)  
 [Operations](#operations)  
+[Example use cases](#example-use-cases)  
 [Credentials](#credentials)  
 [Compatibility](#compatibility)  
 [Resources](#resources)
@@ -43,6 +44,76 @@ n8n-nodes-aloware
 - **Clear List** — remove every contact from a specific Power Dialer list
 - **Clear User Lists** — remove every contact from all Power Dialer lists owned by a given user
 
+## Example use cases
+
+### Text every new CRM lead within seconds
+
+`HubSpot Trigger` → `Aloware: Contact – Create or Update` → `Aloware: SMS – Send`
+
+Push the new lead into Aloware so your agents see it, then send the first touch
+immediately instead of waiting for someone to pick up the phone.
+
+```
+Contact – Create or Update
+  Phone Number: {{ $json.properties.phone }}
+  Additional Fields:
+    First Name:  {{ $json.properties.firstname }}
+    Email:       {{ $json.properties.email }}
+    Tags:        webform,hot-lead
+
+SMS – Send
+  Send From: Phone Number (From)
+  From:      +18885551234          ← one of your Aloware line numbers
+  To:        {{ $json.properties.phone }}
+  Message:   Hi {{ $json.properties.firstname }}, thanks for reaching out! An agent will call you shortly.
+```
+
+### Start a nurture sequence from a website form
+
+`n8n Form Trigger` → `Aloware: Sequence – Enroll Contact`
+
+```
+Sequence – Enroll Contact
+  Sequence ID: 4821
+  Source:      Phone Number
+  Phone Number: {{ $json.phone }}
+  Force Enroll: false
+```
+
+### Stop messaging a customer once the deal closes
+
+`Salesforce Trigger` (Opportunity → Closed Won) → `Aloware: Sequence – Disenroll Contact`
+
+Removes the contact from every active sequence so a new customer never receives
+another prospecting message.
+
+### Reduce no-shows with an appointment reminder
+
+`Schedule Trigger` (hourly) → `Google Calendar: Get Many` → `Aloware: SMS – Send`
+
+Look up meetings starting in the next hour and text each attendee a confirmation.
+
+### Clean up a Power Dialer list after a campaign
+
+`Schedule Trigger` (nightly) → `Aloware: Power Dialer – Clear List`
+
+```
+Power Dialer – Clear List
+  List ID: 1207
+```
+
+### Let an AI agent send messages on your behalf
+
+This node sets `usableAsTool: true`, so it can be attached directly to n8n's
+**AI Agent** node. Give the agent the Aloware node as a tool and it can look up a
+contact and send an SMS as part of its reasoning — no code, no HTTP Request node.
+
+`AI Agent` → tool: `Aloware: SMS – Send`
+
+> Tip: numeric fields such as **Sequence ID**, **List ID** and **User ID** come from
+> your Aloware account. Run **User – Get Many** once to discover user IDs, and read
+> sequence and list IDs from their URLs in the Aloware UI.
+
 ## Credentials
 
 You need an **API Token** from your Aloware account. Generate it from Aloware **UI → Integrations → API Tokens**.
@@ -53,8 +124,9 @@ The token is sent automatically with every request (as a query parameter for `GE
 
 ## Compatibility
 
-- Tested with n8n `1.108+` (self-hosted)
+- Tested with self-hosted n8n up to `2.23`
 - Tested against Node.js 22 LTS
+- Published with [npm provenance](https://docs.npmjs.com/generating-provenance-statements) — every release is cryptographically traceable to the commit it was built from
 
 ## Resources
 
