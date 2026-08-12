@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4] - 2026-08-12
+
+### Changed
+- Dropped the `.git` suffix from `repository.url`. The n8n Creator Portal's
+  automated review reports the repository as "invalid or private" even though
+  it is public and anonymously reachable; a checker that derives `owner/repo`
+  from the URL without stripping `.git` would query a non-existent repository.
+
 ## [0.1.3] - 2026-08-12
 
 ### Changed
