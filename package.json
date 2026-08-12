@@ -35,6 +35,9 @@
 		"dist/credentials",
 		"dist/nodes"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"strict": true,
