@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3] - 2026-08-12
+
+### Changed
+- `repository.url` now matches the format used by the official n8n node
+  template (plain `https://`, which npm normalises to `git+https://` on
+  publish). Released so the n8n Creator Portal re-runs its automated review
+  against the now-public repository.
+
 ## [0.1.2] - 2026-08-12
 
 ### Added
