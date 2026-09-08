@@ -21,6 +21,8 @@ interface AlowarePayload {
 	body?: IDataObject;
 }
 
+// A webhook trigger cannot act as an AI tool, so usableAsTool is deliberately absent.
+// eslint-disable-next-line @n8n/community-nodes/node-usable-as-tool
 export class AlowareTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Aloware Trigger',
@@ -100,7 +102,6 @@ export class AlowareTrigger implements INodeType {
 				],
 			},
 		],
-		usableAsTool: true,
 	};
 
 	async webhook(this: IWebhookFunctions): Promise<IWebhookResponseData> {
