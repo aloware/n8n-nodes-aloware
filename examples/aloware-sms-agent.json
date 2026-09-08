@@ -1,0 +1,98 @@
+{
+  "name": "Aloware SMS Agent (demo)",
+  "nodes": [
+    {
+      "parameters": { "options": {} },
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [-220, 0],
+      "webhookId": "b1000000-0000-4000-8000-000000000009"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an assistant for Aloware, a contact-center platform. You have two tools.\n\n1. \"Look up contact in Aloware\" — finds an existing contact by phone number.\n2. \"Send SMS via Aloware\" — sends a text message from the company line.\n\nRules:\n- Always convert phone numbers to E.164 before calling a tool (e.g. 818 600 6426 -> +18186006426). If the country is unclear, assume US (+1).\n- After a lookup, report the contact's name and company in one short line. If nothing is found, say so plainly and do not invent details.\n- NEVER send an SMS on your own initiative. First show the recipient number and the exact message text, then ask the user to confirm. Only call the send tool after the user explicitly confirms.\n- Keep SMS bodies under 160 characters.\n- After sending, confirm what was sent and to whom."
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000002",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [40, 0]
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "gpt-5-mini" },
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000003",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [-60, 220],
+      "credentials": {
+        "openAiApi": { "id": "qtTZALELTJTUsDJ0", "name": "OpenAI account" }
+      }
+    },
+    {
+      "parameters": { "contextWindowLength": 10 },
+      "id": "a1000000-0000-4000-8000-000000000004",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [80, 220]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "lookupByPhone",
+        "phone_number": "={{ $fromAI('phone_number', 'Phone number to look up, in E.164 format, e.g. +18181234567', 'string') }}",
+        "descriptionType": "manual",
+        "toolDescription": "Look up an existing contact in Aloware by phone number. Returns the contact name, company and other CRM fields when a match exists.",
+        "requestOptions": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000005",
+      "name": "Look up contact in Aloware",
+      "type": "CUSTOM.alowareTool",
+      "typeVersion": 1,
+      "position": [240, 220],
+      "credentials": {
+        "alowareApi": { "id": "WcjPXIO1MQNkcEpk", "name": "Aloware account" }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "sms",
+        "operation": "send",
+        "senderType": "from",
+        "from": "+18186006426",
+        "to": "={{ $fromAI('to_phone_number', 'Recipient phone number in E.164 format, e.g. +18181234567', 'string') }}",
+        "message": "={{ $fromAI('message_text', 'The SMS body to send. Plain text, under 160 characters.', 'string') }}",
+        "descriptionType": "manual",
+        "toolDescription": "Send an SMS from the Aloware company line to a contact. Requires the recipient phone number in E.164 format and the message text. Only call this after the user has explicitly confirmed both the recipient and the exact message.",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000006",
+      "name": "Send SMS via Aloware",
+      "type": "CUSTOM.alowareTool",
+      "typeVersion": 1,
+      "position": [420, 220],
+      "credentials": {
+        "alowareApi": { "id": "WcjPXIO1MQNkcEpk", "name": "Aloware account" }
+      }
+    }
+  ],
+  "connections": {
+    "When chat message received": { "main": [[{ "node": "AI Agent", "type": "main", "index": 0 }]] },
+    "OpenAI Chat Model": { "ai_languageModel": [[{ "node": "AI Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Simple Memory": { "ai_memory": [[{ "node": "AI Agent", "type": "ai_memory", "index": 0 }]] },
+    "Look up contact in Aloware": { "ai_tool": [[{ "node": "AI Agent", "type": "ai_tool", "index": 0 }]] },
+    "Send SMS via Aloware": { "ai_tool": [[{ "node": "AI Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

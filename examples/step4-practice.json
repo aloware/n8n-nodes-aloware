@@ -1,0 +1,78 @@
+{
+  "name": "Aloware node — step 4 practice",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c1000000-0000-4000-8000-000000000001",
+      "name": "When clicking 'Execute workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-260, 0]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "demo-phone",
+              "name": "demo_phone",
+              "type": "string",
+              "value": "+1XXXXXXXXXX"
+            },
+            {
+              "id": "demo-message",
+              "name": "demo_message",
+              "type": "string",
+              "value": "Hi! This is a test message sent from n8n using the Aloware community node."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000002",
+      "name": "Demo Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-40, 0]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "lookupByPhone",
+        "phone_number": "={{ $json.demo_phone }}",
+        "requestOptions": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000003",
+      "name": "Look Up Contact",
+      "type": "n8n-nodes-aloware.aloware",
+      "typeVersion": 1,
+      "position": [180, 0]
+    },
+    {
+      "parameters": {
+        "resource": "sms",
+        "operation": "send",
+        "senderType": "from",
+        "from": "+18186006426",
+        "to": "={{ $('Demo Input').item.json.demo_phone }}",
+        "message": "={{ $('Demo Input').item.json.demo_message }}",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "c1000000-0000-4000-8000-000000000004",
+      "name": "Send SMS",
+      "type": "n8n-nodes-aloware.aloware",
+      "typeVersion": 1,
+      "position": [400, 0]
+    }
+  ],
+  "connections": {
+    "When clicking 'Execute workflow'": { "main": [[{ "node": "Demo Input", "type": "main", "index": 0 }]] },
+    "Demo Input": { "main": [[{ "node": "Look Up Contact", "type": "main", "index": 0 }]] },
+    "Look Up Contact": { "main": [[{ "node": "Send SMS", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

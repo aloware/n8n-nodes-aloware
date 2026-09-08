@@ -1,0 +1,13 @@
+{
+	"node": "n8n-nodes-aloware.alowareTrigger",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Communication", "Sales"],
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://support.aloware.com/en/articles/9020028-using-aloware-webhook-integration-for-real-time-automation"
+			}
+		]
+	}
+}

@@ -14,7 +14,8 @@ export const userDescription: INodeProperties[] = [
 				name: 'Get Many',
 				value: 'getMany',
 				action: 'Get many users',
-				description: 'Retrieve all Aloware users (agents) in the account',
+				description:
+					'Retrieve all Aloware users (agents) in the account. The endpoint has no pagination and always returns every user.',
 				routing: {
 					request: {
 						method: 'GET',

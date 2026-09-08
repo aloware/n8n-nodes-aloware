@@ -71,7 +71,7 @@ export const powerDialerDescription: INodeProperties[] = [
 		type: 'string',
 		required: true,
 		default: '',
-		description: 'Power Dialer list ID to clear',
+		description: 'Power Dialer list ID to clear. Use the list ID from Aloware Classic (the number in the list URL); list numbers shown in Aloware Talk are different and the API rejects them as invalid.',
 		displayOptions: {
 			show: { resource: ['powerDialer'], operation: ['clearList'] },
 		},
@@ -80,12 +80,14 @@ export const powerDialerDescription: INodeProperties[] = [
 
 	// ----- Clear User Lists -----
 	{
-		displayName: 'User ID',
+		displayName: 'User Name or ID',
 		name: 'user_id',
-		type: 'string',
+		type: 'options',
 		required: true,
 		default: '',
-		description: 'Power Dialer owner user ID whose lists will be cleared',
+		description:
+			'Power Dialer owner whose lists will be cleared. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+		typeOptions: { loadOptionsMethod: 'getUsers' },
 		displayOptions: {
 			show: { resource: ['powerDialer'], operation: ['clearUserLists'] },
 		},

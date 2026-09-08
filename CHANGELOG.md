@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.2.0] - 2026-09-08
+
+### Added
+- **Aloware Trigger** node. Starts a workflow on any Aloware webhook event — call and
+  SMS dispositions, contact changes, appointments, voicemails, recordings, transcriptions
+  and AloAi call summaries. Aloware has no API to register webhooks, so the node shows
+  setup instructions and the user pastes the URL into *Integrations → Webhook
+  Integration*. Optional filter by event family; the `{"body": …, "event": …}`
+  envelope is flattened to `{event, …fields}` by default.
+- **Call → Make Two-Legged Call** (`POST /two-legged-call`): ring an agent or a ring
+  group first, then dial the contact by phone number or contact ID from a chosen line.
+- **Contact → Create or Update** now sends `force_update` (**Update If Contact Exists**,
+  on by default). Without it Aloware answers `409 Contact already exists` for any known
+  phone number, so the operation was create-only in practice.
+- **Contact → Create or Update** exposes the full `/forms` surface: lead source, date of
+  birth, timezone, address/city/state/ZIP/country, website, custom fields, other phone
+  numbers, line, sequence enrollment, Power Dialer placement, ring-group distribution,
+  tag ID, disposition status and DNC.
+- **User dropdowns.** Every user ID field (assigned user, two-legged call agent, Power
+  Dialer owner) is now a searchable list loaded from `GET /users`, with expressions
+  still allowed.
+
+### Changed
+- **Power Dialer → Clear List** documents that `list_id` must be an Aloware Classic list
+  ID; Aloware Talk list numbers are rejected.
+- **User → Get Many** documents that the endpoint has no pagination and always returns
+  every user.
+- `Contact → Create or Update → Assigned User` changed from a number field to a user
+  dropdown. Existing workflows keep working; the stored value is the same user ID.
+
 ## [0.1.4] - 2026-08-12
 
 ### Changed

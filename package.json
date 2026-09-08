@@ -1,18 +1,23 @@
 {
 	"name": "n8n-nodes-aloware",
-	"version": "0.1.4",
-	"description": "n8n community node for Aloware — send SMS/MMS, manage contacts, enroll into sequences and manage power dialer lists via the Aloware API.",
+	"version": "0.2.0",
+	"description": "n8n community node for Aloware \u2014 trigger on call, SMS and AloAi events; send SMS/MMS, place two-legged calls, manage contacts, sequences and power dialer lists via the Aloware API.",
 	"license": "MIT",
 	"homepage": "https://github.com/aloware/n8n-nodes-aloware",
 	"bugs": {
 		"url": "https://github.com/aloware/n8n-nodes-aloware/issues"
 	},
 	"keywords": [
-		"n8n-community-node-package",
 		"aloware",
-		"sms",
+		"calls",
+		"contact-center",
 		"cpaas",
-		"contact-center"
+		"n8n-community-node-package",
+		"sms",
+		"trigger",
+		"two-legged-call",
+		"voice",
+		"webhook"
 	],
 	"author": {
 		"name": "Maxim Dudnik",
@@ -45,7 +50,8 @@
 			"dist/credentials/AlowareApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Aloware/Aloware.node.js"
+			"dist/nodes/Aloware/Aloware.node.js",
+			"dist/nodes/AlowareTrigger/AlowareTrigger.node.js"
 		]
 	},
 	"devDependencies": {
