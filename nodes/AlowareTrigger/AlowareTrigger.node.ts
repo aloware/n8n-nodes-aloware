@@ -43,6 +43,7 @@ export class AlowareTrigger implements INodeType {
 				name: 'default',
 				httpMethod: 'POST',
 				responseMode: 'onReceived',
+				responseData: 'received',
 				path: 'webhook',
 			},
 		],
@@ -124,7 +125,6 @@ export class AlowareTrigger implements INodeType {
 				: { ...(payload as IDataObject) };
 
 		return {
-			webhookResponse: { received: true },
 			workflowData: [this.helpers.returnJsonArray([output])],
 		};
 	}
