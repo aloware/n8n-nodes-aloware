@@ -1,6 +1,7 @@
 import {
 	NodeConnectionTypes,
 	type IDataObject,
+	type IHookFunctions,
 	type INodeType,
 	type INodeTypeDescription,
 	type IWebhookFunctions,
@@ -103,6 +104,23 @@ export class AlowareTrigger implements INodeType {
 				],
 			},
 		],
+	};
+
+	// Aloware has no public API for registering webhooks, so the URL is added by hand
+	// in Aloware (Integrations -> Webhook Integration). n8n still requires these three
+	// lifecycle methods to exist on a webhook trigger, so they are intentional no-ops.
+	webhookMethods = {
+		default: {
+			async checkExists(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+			async create(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+			async delete(this: IHookFunctions): Promise<boolean> {
+				return true;
+			},
+		},
 	};
 
 	async webhook(this: IWebhookFunctions): Promise<IWebhookResponseData> {

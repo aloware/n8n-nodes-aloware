@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.1] - 2026-09-09
+
+### Fixed
+- **Aloware Trigger** now declares the `webhookMethods` lifecycle hooks
+  (`checkExists`, `create`, `delete`) that n8n requires of every webhook trigger
+  node. Aloware exposes no API for registering webhooks, so the hooks are
+  deliberate no-ops that return `true`; the node's setup notice still explains the
+  manual step. Raised in the n8n verification review of 0.2.0.
+
 ## [0.2.0] - 2026-09-08
 
 ### Added

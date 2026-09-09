@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-aloware",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "n8n community node for Aloware \u2014 trigger on call, SMS and AloAi events; send SMS/MMS, place two-legged calls, manage contacts, sequences and power dialer lists via the Aloware API.",
 	"license": "MIT",
 	"homepage": "https://github.com/aloware/n8n-nodes-aloware",
