@@ -26,7 +26,8 @@ See [Install verified community nodes](https://docs.n8n.io/integrations/communit
 
 > If Aloware doesn't show up in the nodes panel, verified community nodes may be turned off for
 > your instance: on n8n Cloud check **Instance settings** in the Cloud console; on self-hosted n8n
-> check the community-node environment variables.
+> make sure `N8N_COMMUNITY_PACKAGES_ENABLED` and `N8N_VERIFIED_PACKAGES_ENABLED` are not set to
+> `false` (both default to `true`).
 
 ### Manual install (self-hosted only)
 

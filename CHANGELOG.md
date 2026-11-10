@@ -7,6 +7,9 @@
   nodes panel on both n8n Cloud and self-hosted n8n. Removed the outdated note that the
   node cannot be installed on n8n Cloud. The npm / Settings install path is kept as a
   self-hosted fallback. No code changes.
+- **CI / publish:** pinned Node.js to 24 instead of `lts/*`. `lts/*` now resolves to
+  Node 26, where the `isolated-vm` dependency of `n8n-workflow` fails to compile.
+  Node 24 also ships the npm 11 needed for trusted (OIDC) publishing.
 
 ## [0.2.1] - 2026-09-09
 
