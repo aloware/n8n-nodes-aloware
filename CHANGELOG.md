@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2] - 2026-11-10
+
+### Changed
+- **README:** the node is now verified by n8n, so installation is documented through the
+  nodes panel on both n8n Cloud and self-hosted n8n. Removed the outdated note that the
+  node cannot be installed on n8n Cloud. The npm / Settings install path is kept as a
+  self-hosted fallback. No code changes.
+
 ## [0.2.1] - 2026-09-09
 
 ### Fixed

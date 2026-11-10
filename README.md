@@ -1,6 +1,6 @@
 # n8n-nodes-aloware
 
-This is an [n8n](https://n8n.io) community node for [Aloware](https://aloware.com) — an AI-powered contact center platform for SMS, voice calls, power dialing and sales outreach.
+This is a **verified** [n8n](https://n8n.io) community node for [Aloware](https://aloware.com) — an AI-powered contact center platform for SMS, voice calls, power dialing and sales outreach.
 
 It lets you react to Aloware events (calls, SMS, AloAi call summaries, contact changes) and call the Aloware API from n8n workflows to place two-legged calls, send SMS/MMS, manage contacts, enroll contacts into sequences, and manage power dialer lists.
 
@@ -14,15 +14,30 @@ It lets you react to Aloware events (calls, SMS, AloAi call summaries, contact c
 
 ## Installation
 
-Follow the [community nodes installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n documentation.
+Aloware is a [verified n8n node](https://n8n.io/integrations/aloware/), so it installs straight
+from the editor on **n8n Cloud** and **self-hosted n8n**. No npm command is needed.
 
-In your n8n instance go to **Settings → Community Nodes → Install** and enter:
+1. Open a workflow and click **+** (or press **N**) to open the nodes panel.
+2. Search for **Aloware**. The node appears under **More from the community** with the verified badge.
+3. Select it and click **Install**.
+
+An instance **owner or admin** installs it once; after that everyone on the instance can use it.
+See [Install verified community nodes](https://docs.n8n.io/integrations/community-nodes/installation/verified-install/).
+
+> If Aloware doesn't show up in the nodes panel, verified community nodes may be turned off for
+> your instance: on n8n Cloud check **Instance settings** in the Cloud console; on self-hosted n8n
+> check the community-node environment variables.
+
+### Manual install (self-hosted only)
+
+To pin a specific version, or if your instance hides verified nodes, go to
+**Settings → Community Nodes → Install** and enter:
 
 ```
 n8n-nodes-aloware
 ```
 
-> Community nodes run only on **self-hosted n8n**. They cannot be installed on n8n Cloud.
+See the [community nodes installation guide](https://docs.n8n.io/integrations/community-nodes/installation/).
 
 ## Trigger
 
@@ -174,6 +189,7 @@ The token is sent automatically with every request (as a query parameter for `GE
 
 ## Compatibility
 
+- Works on n8n Cloud and self-hosted n8n (verified community node)
 - Tested with self-hosted n8n up to `2.23` (trigger and two-legged call verified against the live Aloware API on 2026-09-08)
 - Tested against Node.js 22 LTS
 - Published with [npm provenance](https://docs.npmjs.com/generating-provenance-statements) — every release is cryptographically traceable to the commit it was built from
@@ -194,6 +210,8 @@ Aloware API documentation (per resource used by this node):
 
 n8n:
 
+- [Aloware on n8n](https://n8n.io/integrations/aloware/)
+- [Install verified community nodes](https://docs.n8n.io/integrations/community-nodes/installation/verified-install/)
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
 
 ## License
